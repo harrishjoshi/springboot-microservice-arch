@@ -5,6 +5,7 @@ import com.harrish.productservice.dto.ProductResponse;
 import com.harrish.productservice.dto.ProductUpdateRequest;
 import com.harrish.productservice.exception.ProductNotFoundException;
 import com.harrish.productservice.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    void createProduct(@RequestBody ProductRequest productRequest) {
+    void createProduct(@Valid @RequestBody ProductRequest productRequest) {
         productService.createProduct(productRequest);
     }
 
@@ -38,7 +39,7 @@ public class ProductController {
     }
 
     @PutMapping
-    void updateProduct(@RequestBody ProductUpdateRequest updateRequest) throws ProductNotFoundException {
+    void updateProduct(@Valid @RequestBody ProductUpdateRequest updateRequest) throws ProductNotFoundException {
         productService.updateProduct(updateRequest);
     }
 
